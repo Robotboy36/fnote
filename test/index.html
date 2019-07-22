@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>基础测试1</title>
+</head>
+<body>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+        </ul>
+    <script>
+        // 请写出如下点击li的输出值，并用三种办法正确输出li里的数字。
+        var list_li = document.getElementsByTagName("li");
+        let list = Array.from(list_li);
+        // 1
+        // for (var i = 0; i < list.length; i++) {
+        //     // var li = list[i];
+        //     list[i].onclick = function() {
+        //         console.log(this.textContent);
+        //     }
+        // }
+        
+        // // 2
+        // for (var i = 0; i < list.length; i++) {
+        //     (function (index) {
+        //         list[index].onclick = function() {
+        //             console.log(index + 1);
+        //         }
+        //     })(i);
+        // }
+        
+        // // 3
+        // list.forEach(li => {
+        //     li.onclick = function () {
+        //         console.log(li.textContent);
+        //     }
+        // })
+
+        // 4
+        // for (let i = 1; i <= list.length; i++) {
+        //     list[i].onclick = function() {
+        //         console.log(i);
+        //     }
+        // }
+
+
+        // alert(a)
+        // a();
+        // var a=3;
+        // function a(){
+        //     alert(10)
+        // } 
+        // alert(a)
+        // a=6;
+        // a();
+        // ----------------------
+        // 结果：
+        // function a () { alert(10) }
+        // 10
+        // 3
+        // a is not function
+
+
+        // this.a = 20;
+        // var test = {
+        //     a: 40,
+        //     init:()=> {
+        //         console.log(this.a);
+        //         function go() {
+        //             this.a = 60;
+        //             console.log(this.a);
+        //         }
+        //         go.prototype.a = 50;
+        //         return go; 
+        //     }
+        // };
+        // var p = test.init();
+        // p();
+        // new(test.init())();
+        // ----------------------
+        // 结果：20， 50， 60
+        // 20, 60, 60, 60
+
+
+        // var num = 1;
+        // function yideng() {
+        //     "use strict";
+        //     console.log(this.num++);
+        //     // console.log(this);
+        // }
+        // function yideng2() {
+        //     console.log(++this.num);
+        // }
+        // (function() {
+        //     "use strict";
+        //     yideng2();
+        // })();
+        // yideng();
+        // ----------------------
+        // 结果：2, num of undefined
+
+
+        // function C1(name) {
+        //     if (name) this.name = name;
+        // }
+        // function C2(name) {
+        //     this.name = name;
+        // }
+        // function C3(name) {
+        //     this.name = name || 'fe';
+        // }
+        // C1.prototype.name = "yideng";
+        // C2.prototype.name = "lao";
+        // C3.prototype.name = "yuan";
+        // console.log((new C1().name) + (new C2().name) + (new C3().name));
+        
+        // ----------------------
+        // 结果：yideng, undefined, fe
+
+        // 4.写出输出值，并解释为什么。(5分)
+        // function test(m) {
+        //     m = {v:5}
+        // }
+        // var m = {k: 30};
+        // test(m);
+        // alert(m.v);
+        // ----------------------
+        // 结果：undefined, 因为更换了地址
+
+        // 5.请写出代码执行结果，并解释为什么？（5分）
+        // function yideng() {
+        //     console.log(1);
+        // }
+        // (function () {
+        //     if (false) {
+        //         function yideng() {
+        //             console.log(2);
+        //         }
+        //     }
+        //     yideng();
+        // })();
+        // 结果： yideng is not a function
+        // why ？？
+
+
+//         6.请用一句话算出0-100之间学生的学生等级，如90-100输出为1等生、80-90为2等
+// 生以此类推。不允许使用if switch等。（10分）
+        // let score = 100
+        // let level = (10 - Math.floor(score / 10)) || 1
+        // console.log(`${level}等生`)
+
+
+        // 7.请用一句话遍历变量a。(禁止用for 已知var a = “abc”)(10分)
+        // let a = 'abc'
+        // Array.from(a, ch => console.log(ch))
+        // console.log(...a.split(''))
+
+        // 8.请在下面写出JavaScript面向对象编程的混合式继承。并写出ES6版本的继承。
+        // 要求：汽车是父类，Cruze是子类。父类有颜色、价格属性，有售卖的方法。Cruze子
+        // 类实现父类颜色是红色，价格是140000,售卖方法实现输出如下语句：将 红色的
+        // Cruze买给了小王价格是14万。（20分）
+
+        // function Car (color, price) {
+        //     this.color = color
+        //     this.price = price
+        // }
+
+        // Car.prototype.sell = function () {
+        //     console.log(`颜色：${this.color}, 价格：${this.price}W`)
+        // }
+
+        // es5
+        // function Cruze () {
+        //     let args = Array.from(arguments)
+        //     Car.call(this, ...args)
+        // }
+        // Cruze.prototype = Object.create(Car.prototype)
+        // Cruze.constructor = Cruze
+
+        // es6
+        // class Cruze extends Car {
+        //     constructor (color, price) {
+        //         super(color, price)
+        //     }
+        // }
+
+        // let xiaowan = new Cruze('红色', 14)
+        // xiaowan.sell()
+
+        // 10.【仔细思考】写出如下代码执行结果，并解释为什么。(12分)
+        // var length = 10;
+        // function fn() {
+        //     console.log(this.length);
+        // }
+        // var yideng = {
+        //     length: 5,
+        //     method: function(fn) {
+        //         fn();
+        //         arguments[0]();
+        //     }
+        // };
+        // yideng.method(fn, 1);
+    </script>
+</body>
+</html>
